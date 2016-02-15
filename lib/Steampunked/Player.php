@@ -11,5 +11,11 @@ namespace Steampunked;
 
 class Player
 {
+    public function __construct($name){
+        $this->name = $name;
+    }
 
+
+
+    private $name;
 }
