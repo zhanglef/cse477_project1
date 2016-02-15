@@ -44,6 +44,8 @@ class Steampunked
         return true;
     }
 
-    private $pipeLocationOne;
-    private $pipeLocationTwo;
+    private $player1name;
+    private $player2name;
+    private $size;
+
 }
