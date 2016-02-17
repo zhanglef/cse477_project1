@@ -37,6 +37,55 @@ class SteampunkedTest extends \PHPUnit_Framework_TestCase
 
 		$this->assertEquals("player1",$Steampunked->GetPlayer1()->GetName());
 		$this->assertEquals("player2",$Steampunked->GetPlayer2()->GetName());
+		$this->assertEquals($Steampunked->GetTurn(),$Steampunked->GetPlayer1());
+	}
+
+	public function test_GetPlayer1(){
+		$Steampunked = new Steampunked\Steampunked(self::SEED);
+		$Steampunked->SetSize(6);
+		$Steampunked->SetName("player1","player2");
+		$player = new Steampunked\Player("player1",6,"player1");
+		$this->assertEquals($player,$Steampunked->GetPlayer1());
+	}
+
+	public function test_GetPlayer2(){
+		$Steampunked = new Steampunked\Steampunked(self::SEED);
+		$Steampunked->SetSize(6);
+		$Steampunked->SetName("player1","player2");
+		$player = new Steampunked\Player("player2",6,"player2");
+		$this->assertEquals($player,$Steampunked->GetPlayer2());
+	}
+
+	public function test_SwitchTurn(){
+		$Steampunked = new Steampunked\Steampunked(self::SEED);
+		$Steampunked->SetSize(6);
+		$Steampunked->SetName("player1","player2");
+		$player = new Steampunked\Player("player2",6,"player2");
+		$Steampunked->SwitchTurn();
+		$this->assertEquals($player,$Steampunked->GetTurn());
+		$player = new Steampunked\Player("player1",6,"player1");
+		$Steampunked->SwitchTurn();
+		$this->assertEquals($player,$Steampunked->GetTurn());
+	}
+
+	public function test_GetTurn(){
+		$Steampunked = new Steampunked\Steampunked(self::SEED);
+		$Steampunked->SetSize(6);
+		$Steampunked->SetName("player1","player2");
+		$player = new Steampunked\Player("player2",6,"player2");
+		$Steampunked->SwitchTurn();
+		$this->assertEquals($player,$Steampunked->GetTurn());
+		$player = new Steampunked\Player("player1",6,"player1");
+		$Steampunked->SwitchTurn();
+		$this->assertEquals($player,$Steampunked->GetTurn());
+	}
+
+	public function test_GetRandomPipesPlayer1(){
+		$Steampunked = new Steampunked\Steampunked(self::SEED);
+		$this->assertEquals(5, count($Steampunked->GetRandomPipesPlayer1()));
+		for($r=0; $r<count($Steampunked->GetRandomPipesPlayer1());  $r++) {
+			$this->assertInstanceOf("Steampunked\Tile", $Steampunked->GetRandomPipesPlayer1()[$r]);
+		}
 	}
 }
 /// @endcond
