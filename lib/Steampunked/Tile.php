@@ -45,7 +45,7 @@ class Tile
 
         $pipe = $this->player->GetAllPipe();
         $key = array_search($this, $pipe);
-        unset($this->leaks);
+        $this->leaks = array();
 
         $open = $this->open();
         foreach(array("N", "W", "S", "E") as $direction) {
