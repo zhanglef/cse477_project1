@@ -70,6 +70,7 @@ class Player
     }
 
     public function findClickable(){
+        $this->SetAllFlag();
         if($this->GetPlayerNum()=="player1"){
             $index = ($this->size * ($this->size+2))/2;
             $index -= ($this->size + 2);
