@@ -2,8 +2,8 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="0f39263d-9e00-4226-a6a6-3df89da3b459" name="webdev-project1check" url="http://webdev.cse.msu.edu/~zhanglef/project1check">
-        <fileTransfer host="arctic.cse.msu.edu" port="22" rootFolder="/user/zhanglef/classweb/project1check" accessType="SFTP" password="dff0dfc2dfcbdfc4dfcddf9bdf9adf9adf9b" username="zhanglef">
+      <webServer id="0f39263d-9e00-4226-a6a6-3df89da3b459" name="webdev-project1check" url="http://webdev.cse.msu.edu/~zhanglef/project1">
+        <fileTransfer host="arctic.cse.msu.edu" port="22" rootFolder="/user/newmane7/classweb/project1check" accessType="SFTP" username="newmane7">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" />
           </advancedOptions>
