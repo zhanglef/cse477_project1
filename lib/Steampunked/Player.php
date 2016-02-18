@@ -15,7 +15,7 @@ class Player
         $this->name = $name;
         $this->size = $size;
         $this->playernum = $player;
-        $guage = new Tile("gauge-0",array("N" => true, "W" => true, "S" => false, "E" => false));
+        $guage = new Tile("gauge-0.png",array("N" => true, "W" => true, "S" => false, "E" => false));
         $gaugetop = new Tile("gauge-top-0.png",array("N" => false, "W" => false, "S" => true, "E" => false));
         $valve = new Tile("valve-closed.png",array("N" => false, "W" => false, "S" => false, "E" =>true));
         if($player=="player1"){
@@ -23,24 +23,30 @@ class Player
             $index -= ($size + 2);
             $this->allPipe[$index] = $guage;
             $this->allPipe[$index]->SetPlayer($this);
+            $this->allPipe[$index]->SetSize($size);
             $index -= ($size + 2);
             $this->allPipe[$index] = $gaugetop;
             $this->allPipe[$index]->SetPlayer($this);
+            $this->allPipe[$index]->SetSize($size);
             $index -= ($size + 1);
             $this->allPipe[$index] = $valve;
             $this->allPipe[$index]->SetPlayer($this);
+            $this->allPipe[$index]->SetSize($size);
         }
         else{
             $index = ($this->size * ($this->size+2))/2;
             $index += ($size + 2);
             $this->allPipe[$index] = $gaugetop;
             $this->allPipe[$index]->SetPlayer($this);
+            $this->allPipe[$index]->SetSize($size);
             $index += ($size + 2);
             $this->allPipe[$index] = $guage;
             $this->allPipe[$index]->SetPlayer($this);
+            $this->allPipe[$index]->SetSize($size);
             $index += 1;
             $this->allPipe[$index] = $valve;
             $this->allPipe[$index]->SetPlayer($this);
+            $this->allPipe[$index]->SetSize($size);
         }
         $this->findClickable();
     }
@@ -48,6 +54,7 @@ class Player
     public function AddPipe($pipe,$index){
         $this->allPipe[$index] = $pipe;
         $this->allPipe[$index]->SetPlayer($this);
+        $this->allPipe[$index]->SetSize($this->size);
         $this->findClickable();
         //need a function to check if we can add this pipe, CheckDirection(),return true if it can
     }
@@ -95,6 +102,9 @@ class Player
         $allLeak = array();
         foreach($this->allPipe as $pipe){
             $leak = $pipe->GetLeaks();
+            foreach($leak as $l){
+               // print($l);
+            }
             $allLeak = $allLeak + $leak;
         }
         return $allLeak;

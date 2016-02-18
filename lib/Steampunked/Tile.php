@@ -40,7 +40,6 @@ class Tile
             // Already visited
             return array();
         }
-
         $this->flag = true;
 
         $pipe = $this->player->GetAllPipe();
@@ -53,12 +52,12 @@ class Tile
             if($open[$direction]) {
                 $n = $this->neighbor($direction);
                 if($n[0] === null) {
-                    // We have a leak in this direction...
-                    $this->leaks[$n[1]] = array($direction);
+
+                    $this->leaks[$n[1]] = $direction;
 
                 } else {
                     // Recurse
-                    $n->indicateLeaks();
+                    $n[0]->indicateLeaks();
                 }
 
             }
@@ -74,6 +73,7 @@ class Tile
         }
         if ($direction == "S"){
             $index = $key + $this->size;
+            //$index = $key + 5;
         }
         if ($direction == "W"){
             $index = $key - 1;
@@ -82,10 +82,13 @@ class Tile
             $index = $key + 1;
         }
         if (isset($pipe[$index])){
+            //print($index);
             return array($pipe[$index],$index);
         }
-        else{
+        if (!isset($pipe[$index])){
+            //print($index);
             return array(null,$index);
+
         }
         #return $this->player->GetNeighbor($this,$direction);
     }
@@ -94,12 +97,20 @@ class Tile
         $this->player = $player;
     }
 
+    public function GetPlayer(){
+        return $this->player;
+    }
+
     public function GetLeaks(){
         return $this->leaks;
     }
 
     public function SetSize($size){
         $this->size = $size;
+    }
+
+    public function GetSize(){
+        return $this->size;
     }
 
     private $size;

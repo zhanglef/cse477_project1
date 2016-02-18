@@ -18,7 +18,7 @@ class SteampunkedTest extends \PHPUnit_Framework_TestCase
 		$this->assertEquals(5, count($Steampunked->GetRandomPipesPlayer1()));
 		$this->assertEquals(5, count($Steampunked->GetRandomPipesPlayer2()));
 		for($r=0; $r<count($Steampunked->GetRandomPipesPlayer1());  $r++) {
-			$this->assertInstanceOf("Steampunked\Tile", $Steampunked->GetRandomPipesPlayer1()[0]);
+			$this->assertInstanceOf("Steampunked\Tile", $Steampunked->GetRandomPipesPlayer1()[$r]);
 		}
 	}
 
